@@ -35,7 +35,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.gitlab.macbr00ke.download.SynergyBaseball</string>
+	<string>com.github.macbr00ke.download.SynergyBaseball</string>
 	<key>Process</key>
 	<array>
 		<dict>
