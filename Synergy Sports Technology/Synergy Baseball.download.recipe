@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Synergy Baseball.</string>
 	<key>Identifier</key>
-	<string>com.gitlab.hfike.download.SynergyBaseball</string>
+	<string>com.github.macbr00ke.download.SynergyBaseball</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Synergy Baseball and imports it into Munki.</string>
 	<key>Identifier</key>
-	<string>com.gitlab.hfike.munki.SynergyBaseball</string>
+	<string>com.github.macbr00ke.munki.SynergyBaseball</string>
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_REPO_SUBDIR</key>
