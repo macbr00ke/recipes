@@ -13,7 +13,7 @@
 		<key>MUNKI_REPO_SUBDIR</key>
 		<string>Apps/%NAME%</string>
 		<key>NAME</key>
-		<string>Synergy Baseball</string>
+		<string>SynergyBaseball</string>
 		<key>pkginfo</key>
 		<dict>
 			<key>catalogs</key>
