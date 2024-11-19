@@ -29,7 +29,7 @@
 			<key>display_name</key>
 			<string>OpenMTP_x86_64</string>
 			<key>name</key>
-			<string>%NAME%</string>
+			<string>%NAME%-%ARCH%</string>
 			<key>supported_architectures</key>
 			<array>
 				<string>x86_64</string>
