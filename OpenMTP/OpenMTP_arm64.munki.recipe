@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of OpenMTP and imports it into Munki.</string>
 	<key>Identifier</key>
-	<string>com.github.macbr00ke.munki.OpenMTP</string>
+	<string>com.github.macbr00ke.munki.OpenMTP_arm64</string>
 	<key>Input</key>
 	<dict>
 		<key>ARCH</key>

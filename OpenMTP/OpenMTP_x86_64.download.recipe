@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of OpenMTP.</string>
 	<key>Identifier</key>
-	<string>com.github.macbr00ke.download.OpenMTP</string>
+	<string>com.github.macbr00ke.download.OpenMTP_x86_64</string>
 	<key>Input</key>
 	<dict>
 		<key>ARCH</key>
