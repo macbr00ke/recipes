@@ -10,12 +10,10 @@
 	<string>com.github.macbr00ke.munki.OpenMTP_arm64</string>
 	<key>Input</key>
 	<dict>
-		<key>ARCH</key>
-		<string>arm64</string>
 		<key>MUNKI_REPO_SUBDIR</key>
-		<string>Apps/%NAME%</string>
+		<string>Apps/OpenMTP</string>
 		<key>NAME</key>
-		<string>OpenMTP</string>
+		<string>OpenMTP_arm64</string>
 		<key>pkginfo</key>
 		<dict>
 			<key>catalogs</key>
@@ -27,9 +25,9 @@
 			<key>developer</key>
 			<string>Ganesh Rathinavel</string>
 			<key>display_name</key>
-			<string>OpenMTP_arm64</string>
+			<string>OpenMTP</string>
 			<key>name</key>
-			<string>%NAME%-%ARCH%</string>
+			<string>%NAME%</string>
 			<key>supported_architectures</key>
 			<array>
 				<string>arm64</string>
