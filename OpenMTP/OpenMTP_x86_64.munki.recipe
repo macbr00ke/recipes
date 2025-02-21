@@ -10,8 +10,6 @@
 	<string>com.github.macbr00ke.munki.OpenMTP_x86_64</string>
 	<key>Input</key>
 	<dict>
-		<key>ARCH</key>
-		<string>x86_64</string>
 		<key>MUNKI_REPO_SUBDIR</key>
 		<string>Apps/OpenMTP</string>
 		<key>NAME</key>
