@@ -11,7 +11,7 @@
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_REPO_SUBDIR</key>
-		<string>Apps/%NAME%</string>
+		<string>Apps/Synergy</string>
 		<key>NAME</key>
 		<string>SynergyVideoExpress</string>
 		<key>pkginfo</key>
