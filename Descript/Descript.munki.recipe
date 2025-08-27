@@ -1,41 +1,19 @@
-<!--
-    Descript-arm64.munki.recipe
-    Downloads and imports Descript (Apple Silicon / arm64) into Munki.
-
-    Maintainer: Brooke Miller (github.com/macbr00ke)
-    Repo:       https://github.com/macbr00ke/your-recipes-repo
-    Identifier: com.github.macbr00ke.munki.Descript.arm64
-
-    ParentRecipe: com.github.haircut.download.Descript
-    Depends on:   haircut-recipes (https://github.com/autopkg/haircut-recipes)
-
-    Notes:
-    - Imports Apple Silicon Descript into Munki.
-    - Metadata (version, installs, name) is extracted dynamically.
-    - ARCH is hard-coded to arm64.
--->
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
- "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>Identifier</key>
     <string>com.github.macbr00ke.munki.Descript_arm64</string>
-
     <key>Description</key>
     <string>Downloads and imports the latest Apple Silicon (arm64) Descript app into Munki.</string>
-
     <key>ParentRecipe</key>
     <string>com.github.haircut.download.Descript</string>
-
     <key>Input</key>
     <dict>
         <key>MUNKI_REPO_SUBDIR</key>
         <string>Apps/Descript</string>
-
         <key>ARCH</key>
         <string>arm64</string>
-
         <key>pkginfo</key>
         <dict>
             <key>name</key>
@@ -85,7 +63,6 @@
             </array>
         </dict>
     </dict>
-
     <key>Process</key>
     <array>
         <dict>
@@ -99,12 +76,10 @@
                 <string>CFBundleShortVersionString</string>
             </dict>
         </dict>
-
         <dict>
             <key>Processor</key>
             <string>AppPkgCreator</string>
         </dict>
-
         <dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
