@@ -48,7 +48,7 @@
                     <key>CFBundleName</key>
                     <string>Descript</string>
                     <key>CFBundleShortVersionString</key>
-                    <string>%version%</string>
+                    <string>%VERSION%</string>
                     <key>CFBundleVersion</key>
                     <string>%version%</string>
                     <key>minosversion</key>
@@ -74,6 +74,8 @@
                 <string>%pathname%/Descript.app/Contents/Info.plist</string>
                 <key>plist_version_key</key>
                 <string>CFBundleShortVersionString</string>
+                <key>version_output_var</key>
+                <string>VERSION</string>
             </dict>
         </dict>
         <dict>
