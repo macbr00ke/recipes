@@ -21,7 +21,7 @@
 				<string>testing</string>
 			</array>
 			<key>description</key>
-			<string>ricut Design Space web plugin for use with Cricut Printers.</string>
+			<string>Cricut Design Space web plugin for use with Cricut Printers.</string>
 			<key>developer</key>
 			<string>Cricut</string>
 			<key>display_name</key>
