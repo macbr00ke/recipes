@@ -2,58 +2,92 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Comment</key>
-	<string>Created with Recipe Robot v2.5.0 (https://github.com/homebysix/recipe-robot)</string>
-	<key>Description</key>
-	<string>Downloads the latest version of Cricut Design Space.</string>
-	<key>Identifier</key>
-	<string>com.github.macbr00ke.download.CricutDesignSpace</string>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>Cricut Design Space</string>
-	</dict>
-	<key>MinimumVersion</key>
-	<string>2.3</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>filename</key>
-				<string>%NAME%.dmg</string>
-				<key>url</key>
-				<string>https://staticcontent.cricut.com/a/software/osx-native/CricutDesignSpace-Install-v9.53.63.dmg?Expires=1769796508&amp;Signature=W4gCU9iXNT9o6t5ie~f1HRRlabGgKXHtkZcvWU705NQAYtgx3P4C1xfhUzTA6tkCuOk5EqMfq4qNBXPPjS8Y8v4P~re7wrEpmF2uaRaBe1jqj00KfAQ9LLwnZCoFT0EepLCgrR0I8l2OLBONjiono305jN8YwPPTympZJmftFodYUpV5MKuVSRDt3VQNgV-I918clkbr9mcFx-hG7sb3INIJzH4170m47rIk7mQt8v-YcsjvpmxfSLog210OspOu6d-Q-bfkfRJynTjGNHfW6B~CFAYndhCQ13lDPpqQaX1viDBfo4nVMcg8eDFnayE25FX4~OekXESA8T0H9jAaAw__&amp;Key-Pair-Id=K2W1AJ47IQWIOI</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>input_path</key>
-				<string>%pathname%/Cricut Design Space.app</string>
-				<key>requirement</key>
-				<string>identifier "com.cricut.design" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "25627ZFVT7"</string>
-			</dict>
-			<key>Processor</key>
-			<string>CodeSignatureVerifier</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>input_plist_path</key>
-				<string>%pathname%/Cricut Design Space.app/Contents/Info.plist</string>
-				<key>plist_version_key</key>
-				<string>CFBundleShortVersionString</string>
-			</dict>
-			<key>Processor</key>
-			<string>Versioner</string>
-		</dict>
-	</array>
+    <key>Comment</key>
+    <string>Created with Recipe Robot v2.5.0, updated for API-based download</string>
+    <key>Description</key>
+    <string>Downloads the latest version of Cricut Design Space dynamically from Cricut's API.</string>
+    <key>Identifier</key>
+    <string>com.github.macbr00ke.download.CricutDesignSpace</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Cricut Design Space</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.3</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>json_url</key>
+                <string>https://apis.cricut.com/desktopdownload/UpdateJson?operatingSystem=osxnative&amp;shard=a</string>
+                <key>json_key</key>
+                <string>result</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.nstrauss.SharedProcessors/SimpleJSONParser</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>json_url</key>
+                <string>%json_value%</string>
+                <key>json_key</key>
+                <string>rolloutInstallFile</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.nstrauss.SharedProcessors/SimpleJSONParser</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>json_url</key>
+                <string>https://apis.cricut.com/desktopdownload/InstallerFile?shard=a&amp;operatingSystem=osxnative&amp;fileName=%json_value%</string>
+                <key>json_key</key>
+                <string>result</string>
+            </dict>
+            <key>Processor</key>
+            <string>com.github.nstrauss.SharedProcessors/SimpleJSONParser</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+                <key>url</key>
+                <string>%json_value%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/Cricut Design Space.app</string>
+                <key>requirement</key>
+                <string>identifier "com.cricut.design" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "25627ZFVT7"</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%pathname%/Cricut Design Space.app/Contents/Info.plist</string>
+                <key>plist_version_key</key>
+                <string>CFBundleShortVersionString</string>
+            </dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+        </dict>
+
+    </array>
 </dict>
 </plist>
