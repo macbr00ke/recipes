@@ -24,8 +24,10 @@
 			<array>
 				<string>testing</string>
 			</array>
+			<key>category</key>
+			<string>Utility</string>
 			<key>description</key>
-			<string>Popular multimedia player.</string>
+			<string>Stream audio and video to your TV.</string>
 			<key>developer</key>
 			<string>Shenzhen EShare Technology Co</string>
 			<key>display_name</key>
