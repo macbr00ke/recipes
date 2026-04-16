@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Comment</key>
+	<string>Created with Recipe Robot v2.5.0 (https://github.com/homebysix/recipe-robot)</string>
+	<key>Description</key>
+	<string>Downloads the latest version of AMPL for Academics and imports it into Munki.</string>
+	<key>Identifier</key>
+	<string>com.github.macbr00ke.munki.AMPL4A</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>Apps/AMPL</string>
+		<key>NAME</key>
+		<string>AMPL4A</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>blocking_applications</key>
+			<array>
+				<string>AMPL IDE.app</string>
+				<string>AMPL Activation.app</string>
+			</array>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>description</key>
+			<string>AMPL is a high-level modeling system for solving complex optimization problems. AMPL for Academics provides students, faculty, and researchers full AMPL functionality with academic access to select commercial solvers - ideal for coursework, thesis projects, and scholarly research. Requires free academic license.</string>
+			<key>developer</key>
+			<string>AMPL Optimization Inc.</string>
+			<key>display_name</key>
+			<string>AMPL for Academics</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+			<key>category</key>
+			<string>Math &amp; Science</string>
+		</dict>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>2.3</string>
+	<key>ParentRecipe</key>
+	<string>com.github.macbr00ke.download.AMPL4A</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%pathname%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
