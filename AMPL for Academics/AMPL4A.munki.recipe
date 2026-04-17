@@ -44,8 +44,6 @@
                     <string>/Applications/AMPL/AMPL IDE.app</string>
                     <key>type</key>
                     <string>application</string>
-                    <key>version_comparison_key</key>
-                    <string>CFBundleShortVersionString</string>
                 </dict>
                 <dict>
                     <key>path</key>
@@ -58,11 +56,11 @@
             <string>#!/bin/bash
 AMPL_PATH="/Applications/AMPL"
 if [ -d "$AMPL_PATH" ]; then
-    # Fix the executable bits that cause the "Cannot be launched" error
+    # Fix launch error (executable bit)
     /bin/chmod -R +rX "$AMPL_PATH"
-    # Ensure any user can write the license/env files in the shared folder
+    # Allow license writing
     /bin/chmod -R 777 "$AMPL_PATH"
-    # Strip quarantine to bypass Gatekeeper prompts on script-unpacked apps
+    # Remove quarantine
     /usr/bin/xattr -rd com.apple.quarantine "$AMPL_PATH" 2&gt;/dev/null
 fi
 exit 0
@@ -95,8 +93,6 @@ exit 0
                 <string>%pathname%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
-                <key>munkiimport_pkgname</key>
-                <string>AMPLInstaller.pkg</string> 
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
