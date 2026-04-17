@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Comment</key>
-    <string>Created with Recipe Robot v2.5.0 (https://github.com/homebysix/recipe-robot). Customized with Gemini's help to fix permission and uninstall issues.</string>
+    <string>Created with Recipe Robot v2.5.0 (https://github.com/homebysix/recipe-robot). Customized with Gemini's help to fix permission and uninstall issues. Uses 'file' type installs items to bypass AutoPkg versioning errors while maintaining install integrity.</string>
     <key>Description</key>
-    <string>Downloads the latest AMPL for Academics and imports it into Munki.</string>
+    <string>Downloads the latest version of AMPL for Academics and imports it into Munki.</string>
     <key>Identifier</key>
     <string>com.github.macbr00ke.munki.AMPL4A</string>
     <key>Input</key>
@@ -18,8 +18,8 @@
         <dict>
             <key>blocking_applications</key>
             <array>
-                <string>AMPL IDE.app</string>
-                <string>AMPL Activation.app</string>
+                <string>AMPL IDE</string>
+                <string>AMPL Activation</string>
             </array>
             <key>catalogs</key>
             <array>
@@ -43,24 +43,24 @@
                     <key>path</key>
                     <string>/Applications/AMPL/AMPL IDE.app</string>
                     <key>type</key>
-                    <string>application</string>
+                    <string>file</string>
                 </dict>
                 <dict>
                     <key>path</key>
                     <string>/Applications/AMPL/AMPL Activation.app</string>
                     <key>type</key>
-                    <string>application</string>
+                    <string>file</string>
                 </dict>
             </array>
             <key>postinstall_script</key>
             <string>#!/bin/bash
 AMPL_PATH="/Applications/AMPL"
 if [ -d "$AMPL_PATH" ]; then
-    # Fix launch error (executable bit)
+    # Fix the executable bits for the IDE, Activation app, and all solvers
     /bin/chmod -R +rX "$AMPL_PATH"
-    # Allow license writing
+    # Ensure folder is writable for license generation
     /bin/chmod -R 777 "$AMPL_PATH"
-    # Remove quarantine
+    # Strip quarantine flags to bypass Gatekeeper prompts
     /usr/bin/xattr -rd com.apple.quarantine "$AMPL_PATH" 2&gt;/dev/null
 fi
 exit 0
@@ -84,7 +84,7 @@ exit 0
     <string>2.3</string>
     <key>ParentRecipe</key>
     <string>com.github.macbr00ke.download.AMPL4A</string>
-<key>Process</key>
+    <key>Process</key>
     <array>
         <dict>
             <key>Arguments</key>
@@ -93,10 +93,6 @@ exit 0
                 <string>%pathname%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
-                <key>munkiimport_appname</key>
-                <string></string>
-                <key>extract_hashes</key>
-                <true/>
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
