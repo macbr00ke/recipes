@@ -95,8 +95,8 @@ exit 0
                 <string>%pathname%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
-                <key>version_comparison_key</key>
-                <string>CFBundleShortVersionString</string>
+                <key>munkiimport_pkgname</key>
+                <string>AMPLInstaller.pkg</string> 
             </dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
