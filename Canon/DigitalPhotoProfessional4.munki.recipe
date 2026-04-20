@@ -14,10 +14,6 @@
         <string>DigitalPhotoProfessional4</string>
         <key>pkginfo</key>
         <dict>
-            <key>blocking_applications</key>
-            <array>
-                <string>Digital Photo Professional 4.app</string>
-            </array>
             <key>catalogs</key>
             <array>
                 <string>testing</string>
@@ -44,11 +40,10 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <string>%found_path%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
         </dict>
     </array>
 </dict>
-</plist>
