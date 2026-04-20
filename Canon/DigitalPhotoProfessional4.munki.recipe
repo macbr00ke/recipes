@@ -49,7 +49,8 @@
             <string>Canon</string>
             <key>display_name</key>
             <string>Digital Photo Professional 4</string>
-            <key>name</key>            <string>%NAME%</string>
+            <key>name</key>
+            <string>%NAME%</string>
             <key>unattended_install</key>
             <true/>
         </dict>
