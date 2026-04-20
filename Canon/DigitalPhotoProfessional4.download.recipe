@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Digital Photo Professional 4.</string>
+    <key>Identifier</key>
+    <string>com.github.macbr00ke.download.DigitalPhotoProfessional4</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Digital Photo Professional 4</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.3</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>https://app.ssw.imaging-saas.canon/app/en/dpp.html</string>
+                <key>re_pattern</key>
+                <string>id=(?P&lt;download_id&gt;[A-Z0-9]+)&amp;cmp=Y05</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>https://app.ssw.imaging-saas.canon/app/en/dpp.html</string>
+                <key>re_pattern</key>
+                <string>macOS\s*:\s*(?P&lt;version&gt;[\d\.]+)</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=%download_id%&amp;cmp=Y05</string>
+                <key>filename</key>
+                <string>%NAME%-%version%.zip</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+            <key>Arguments</key>
+            <dict>
+                <key>archive_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Canon Inc. (XE2XNRRXZ5)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
