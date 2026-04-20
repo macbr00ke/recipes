@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Digital Photo Professional 4.</string>
+    <string>Downloads the latest version of Digital Photo Professional 4 for Mac.</string>
     <key>Identifier</key>
     <string>com.github.macbr00ke.download.DigitalPhotoProfessional4</string>
     <key>Input</key>
@@ -23,18 +23,14 @@
                 <key>url</key>
                 <string>https://app.ssw.imaging-saas.canon/app/en/dpp.html</string>
                 <key>re_pattern</key>
-                <string>id=(?P&lt;download_id&gt;[A-Z0-9]+)&amp;cmp=Y05</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>URLTextSearcher</string>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>https://app.ssw.imaging-saas.canon/app/en/dpp.html</string>
-                <key>re_pattern</key>
-                <string>macOS\s*:\s*(?P&lt;version&gt;[\d\.]+)</string>
+                <string>id=(?P&lt;download_id&gt;MDIw[^"&amp;]+).*?mac-text</string>
+                <key>result_extensions</key>
+                <dict>
+                    <key>re_flags</key>
+                    <array>
+                        <string>DOTALL</string>
+                    </array>
+                </dict>
             </dict>
         </dict>
         <dict>
@@ -45,7 +41,7 @@
                 <key>url</key>
                 <string>https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=%download_id%&amp;cmp=Y05</string>
                 <key>filename</key>
-                <string>%NAME%-%version%.zip</string>
+                <string>%NAME%.zip</string>
             </dict>
         </dict>
         <dict>
@@ -78,6 +74,43 @@
                 </array>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+                <key>flat_pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgPayloadUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/payload</string>
+                <key>pkg_payload_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Digital Photo Professional 4.pkg/Payload</string>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%RECIPE_CACHE_DIR%/payload/Digital Photo Professional 4.app/Contents/Info.plist</string>
+                <key>plist_version_key</key>
+                <string>CFBundleShortVersionString</string>
             </dict>
         </dict>
     </array>
