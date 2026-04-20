@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest DPP4 and imports into Munki.</string>
+    <string>Downloads latest DPP4 and imports to Munki.</string>
     <key>Identifier</key>
     <string>com.github.macbr00ke.munki.DigitalPhotoProfessional4</string>
     <key>Input</key>
@@ -42,7 +42,7 @@
                 <string>testing</string>
             </array>
             <key>description</key>
-            <string>Professional photo management application for viewing, selecting, and developing RAW images.</string>
+            <string>Professional photo management application for RAW images.</string>
             <key>developer</key>
             <string>Canon</string>
             <key>display_name</key>
@@ -65,14 +65,9 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%found_path%</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/dppm*.pkg</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
-                <key>additional_makepkginfo_options</key>
-                <array>
-                    <string>--version</string>
-                    <string>%version%</string>
-                </array>
             </dict>
         </dict>
     </array>
