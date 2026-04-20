@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest DPP4 and imports to Munki.</string>
+    <string>Downloads the latest DPP4 and imports into Munki.</string>
     <key>Identifier</key>
     <string>com.github.macbr00ke.munki.DigitalPhotoProfessional4</string>
     <key>Input</key>
@@ -65,7 +65,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
+                <string>%found_path%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
                 <key>additional_makepkginfo_options</key>
