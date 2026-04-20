@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads latest DPP4 and imports to Munki.</string>
+    <string>Imports the unzipped PKG into Munki.</string>
     <key>Identifier</key>
     <string>com.github.macbr00ke.munki.DigitalPhotoProfessional4</string>
     <key>Input</key>
@@ -16,33 +16,12 @@
         <dict>
             <key>blocking_applications</key>
             <array>
-                <string>XE2XNRRXZ5.com.canon.Digital-Photo-Professional-4.Cloud-Develop.Beta.Dpp4XPCDCCHelper.app</string>
-                <string>Dpp4HDRComposite.app</string>
-                <string>Dpp4FocusStackingBatch.app</string>
-                <string>Dpp4RawMovieBatch.app</string>
-                <string>CameraSurveyProgram.app</string>
-                <string>Dpp4HDRPQCompositeBatch.app</string>
-                <string>CSATool.app</string>
-                <string>Dpp4HDRPQComposite.app</string>
-                <string>Dpp4Printer.app</string>
-                <string>Dpp4Renamer.app</string>
-                <string>Digital Photo Professional 4 Batch.app</string>
-                <string>Dpp4DPRAWTool.app</string>
-                <string>Dpp4RAWBurstTool.app</string>
-                <string>UpdaterDownloader.app</string>
-                <string>Dpp4FocusStackingTool.app</string>
-                <string>Dpp4ExpComposite.app</string>
-                <string>CSATool-s01.app</string>
-                <string>Dpp4RawMovieTool.app</string>
                 <string>Digital Photo Professional 4.app</string>
-                <string>EOS Lens Registration Tool.app</string>
             </array>
             <key>catalogs</key>
             <array>
                 <string>testing</string>
             </array>
-            <key>description</key>
-            <string>Professional photo management application for RAW images.</string>
             <key>developer</key>
             <string>Canon</string>
             <key>display_name</key>
@@ -65,7 +44,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/dppm*.pkg</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
