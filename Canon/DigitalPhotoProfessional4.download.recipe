@@ -23,7 +23,7 @@
                 <key>url</key>
                 <string>https://app.ssw.imaging-saas.canon/app/en/dpp.html</string>
                 <key>re_pattern</key>
-                <string>(?s)id=MDIw.*?id=(?P&lt;download_id&gt;MDIw[^&amp;&quot;]+)</string>
+                <string>(?s)id=MDIw.*?id=(?P&lt;download_id&gt;MDIw[^&amp;\" ]+)</string>
             </dict>
         </dict>
         <dict>
@@ -80,3 +80,4 @@
         </dict>
     </array>
 </dict>
+</plist>
