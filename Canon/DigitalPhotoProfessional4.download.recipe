@@ -23,7 +23,12 @@
                 <key>url</key>
                 <string>https://app.ssw.imaging-saas.canon/app/en/dpp.html</string>
                 <key>re_pattern</key>
-                <string>(?s)id=(?:[A-Z0-9]+).*?id=(?P&lt;download_id&gt;MDIw[A-Z0-9]+)</string>
+                <string>(?s)id=[A-Z0-9]+.*?id=(?P&lt;download_id&gt;MDIw[^&amp;&quot;]+)</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>user-agent</key>
+                    <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36</string>
+                </dict>
             </dict>
         </dict>
         <dict>
