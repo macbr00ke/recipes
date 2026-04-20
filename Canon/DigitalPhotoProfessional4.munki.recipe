@@ -14,6 +14,29 @@
         <string>DigitalPhotoProfessional4</string>
         <key>pkginfo</key>
         <dict>
+            <key>blocking_applications</key>
+            <array>
+                <string>XE2XNRRXZ5.com.canon.Digital-Photo-Professional-4.Cloud-Develop.Beta.Dpp4XPCDCCHelper.app</string>
+                <string>Dpp4HDRComposite.app</string>
+                <string>Dpp4FocusStackingBatch.app</string>
+                <string>Dpp4RawMovieBatch.app</string>
+                <string>CameraSurveyProgram.app</string>
+                <string>Dpp4HDRPQCompositeBatch.app</string>
+                <string>CSATool.app</string>
+                <string>Dpp4HDRPQComposite.app</string>
+                <string>Dpp4Printer.app</string>
+                <string>Dpp4Renamer.app</string>
+                <string>Digital Photo Professional 4 Batch.app</string>
+                <string>Dpp4DPRAWTool.app</string>
+                <string>Dpp4RAWBurstTool.app</string>
+                <string>UpdaterDownloader.app</string>
+                <string>Dpp4FocusStackingTool.app</string>
+                <string>Dpp4ExpComposite.app</string>
+                <string>CSATool-s01.app</string>
+                <string>Dpp4RawMovieTool.app</string>
+                <string>Digital Photo Professional 4.app</string>
+                <string>EOS Lens Registration Tool.app</string>
+            </array>
             <key>catalogs</key>
             <array>
                 <string>testing</string>
@@ -26,8 +49,7 @@
             <string>Canon</string>
             <key>display_name</key>
             <string>Digital Photo Professional 4</string>
-            <key>name</key>
-            <string>%NAME%</string>
+            <key>name</key>            <string>%NAME%</string>
             <key>unattended_install</key>
             <true/>
         </dict>
