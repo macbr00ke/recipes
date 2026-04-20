@@ -56,6 +56,15 @@
         </dict>
         <dict>
             <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>CodeSignatureVerifier</string>
             <key>Arguments</key>
             <dict>
@@ -66,9 +75,8 @@
                     <string>Apple Root CA</string>
                 </array>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
+                <string>%found_path%</string>
             </dict>
         </dict>
     </array>
 </dict>
-</plist>
