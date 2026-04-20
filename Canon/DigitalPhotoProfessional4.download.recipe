@@ -23,7 +23,14 @@
                 <key>url</key>
                 <string>https://app.ssw.imaging-saas.canon/app/en/dpp.html</string>
                 <key>re_pattern</key>
-                <string>(?s)id=[A-Z0-9]+.*?id=(?P&lt;download_id&gt;MDIw[^&amp;&quot;]+)</string>
+                <string>dpp-gdls-mac-text.*?id=(?P&lt;download_id&gt;MDIw[^&amp;&quot;]+)</string>
+                <key>result_extensions</key>
+                <dict>
+                    <key>re_flags</key>
+                    <array>
+                        <string>DOTALL</string>
+                    </array>
+                </dict>
                 <key>request_headers</key>
                 <dict>
                     <key>user-agent</key>
