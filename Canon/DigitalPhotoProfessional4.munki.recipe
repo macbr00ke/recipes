@@ -70,6 +70,11 @@ if [ -d "/Applications/Canon Utilities/CameraSurveyProgram" ]; then
     rm -rf "/Applications/Canon Utilities/CameraSurveyProgram"
 fi
 
+# Try to remove the parent folder only if it is now empty
+if [ -d "/Applications/Canon Utilities" ]; then
+    rmdir "/Applications/Canon Utilities" 2>/dev/null
+fi
+
 pkgutil --forget com.canon.Digital-Photo-Professional-4
 pkgutil --forget com.canon.EOS-Lens-Registration-Tool
 pkgutil --forget jp.co.canon.ic.CameraSurveyProgram
