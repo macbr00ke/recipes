@@ -53,6 +53,29 @@
             <string>%NAME%</string>
             <key>unattended_install</key>
             <true/>
+            <key>uninstall_method</key>
+            <string>uninstall_script</string>
+            <key>uninstall_script</key>
+            <string>#!/bin/bash
+            
+if [ -d "/Applications/Canon Utilities/Digital Photo Professional 4" ]; then
+    rm -rf "/Applications/Canon Utilities/Digital Photo Professional 4"
+fi
+
+if [ -d "/Applications/Canon Utilities/EOS Lens Registration Tool" ]; then
+    rm -rf "/Applications/Canon Utilities/EOS Lens Registration Tool"
+fi
+
+if [ -d "/Applications/Canon Utilities/CameraSurveyProgram" ]; then
+    rm -rf "/Applications/Canon Utilities/CameraSurveyProgram"
+fi
+
+pkgutil --forget com.canon.Digital-Photo-Professional-4
+pkgutil --forget com.canon.EOS-Lens-Registration-Tool
+pkgutil --forget jp.co.canon.ic.CameraSurveyProgram
+pkgutil --forget com.canon.CSATool
+
+exit 0</string>
         </dict>
     </dict>
     <key>MinimumVersion</key>
