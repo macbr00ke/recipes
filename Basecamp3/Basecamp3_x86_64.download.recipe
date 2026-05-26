@@ -25,7 +25,7 @@
 				<key>filename</key>
 				<string>%NAME%.dmg</string>
 				<key>url</key>
-				<string>https://basecamp.com/desktop/mac/basecamp3.dmg</string>
+				<string>https://basecamp.com/desktop/Basecamp-mac-x64.dmg</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>
