@@ -13,7 +13,7 @@
         <key>NAME</key>
         <string>Easy Interactive Tools</string>
         <key>SEARCH_URL</key>
-        <string>https://epson.com/Support/Projectors/Document-Cameras/Epson-ELPDC20-Document-Camera/s/SPT_V12H500020?review-filter=macOS+26.x+(Tahoe)</string>
+        <string>https://epson.com/Support/Projectors/Document-Cameras/Epson-ELPDC20-Document-Camera/s/SPT_V12H500020?review-filter=macOS+15.x+(Sequoia)</string>
     </dict>
     <key>MinimumVersion</key>
     <string>2.3</string>
