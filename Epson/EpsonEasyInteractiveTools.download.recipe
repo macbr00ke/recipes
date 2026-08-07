@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version of Easy Interactive Tools for Epson devices dynamically from Epson's support page.</string>
     <key>Identifier</key>
-    <string>local.download.EpsonEasyInteractiveTools</string>
+    <string>com.github.macbr00ke.download.EpsonEasyInteractiveTools</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
