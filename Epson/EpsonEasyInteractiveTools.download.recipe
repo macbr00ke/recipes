@@ -3,17 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Easy Interactive Tools for Epson devices.</string>
+    <string>Downloads the latest version of Easy Interactive Tools for Epson devices dynamically from Epson's support page.</string>
     <key>Identifier</key>
-    <string>com.github.macbr00ke.download.EpsonEasyInteractiveTools</string>
+    <string>local.download.EpsonEasyInteractiveTools</string>
     <key>Input</key>
     <dict>
-        <key>MAJOR_VERSION</key>
-        <string>5</string>
         <key>NAME</key>
-        <string>Easy Interactive Tools</string>
+        <string>EpsonEasyInteractiveTools</string>
         <key>SEARCH_URL</key>
-        <string>https://epson.com/Support/Projectors/Document-Cameras/Epson-ELPDC20-Document-Camera/s/SPT_V12H500020?review-filter=macOS+15.x</string>
+        <string>https://epson.com/Support/Projectors/Document-Cameras/Epson-ELPDC20-Document-Camera/s/SPT_V12H500020?review-filter=macOS+15.x+%28Sequoia%29</string>
     </dict>
     <key>MinimumVersion</key>
     <string>2.3</string>
@@ -27,7 +25,7 @@
                 <key>url</key>
                 <string>%SEARCH_URL%</string>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https://ftp\.epson\.com/drivers/EIT[V_]?(?P&lt;version&gt;%MAJOR_VERSION%[\d.]+)_?(?:MacOSX)?\.dmg)</string>
+                <string>(?P&lt;url&gt;https://ftp\.epson\.com/drivers/EIT[V_]?(?P&lt;version&gt;5[\d.]+)_?(?:MacOSX)?\.dmg)</string>
             </dict>
         </dict>
         <dict>
@@ -56,43 +54,6 @@
                     <string>Developer ID Certification Authority</string>
                     <string>Apple Root CA</string>
                 </array>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack</string>
-                <key>flat_pkg_path</key>
-                <string>%pathname%/Easy Interactive Tools Installer.pkg</string>
-                <key>purge_destination</key>
-                <true/>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
-            <key>Arguments</key>
-            <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/payload</string>
-                <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/Easy Interactive Tools Installer.pkg/Payload</string>
-                <key>purge_destination</key>
-                <true/>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>Versioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_plist_path</key>
-                <string>%RECIPE_CACHE_DIR%/payload/Applications/Easy Interactive Tools Ver.5/Easy Interactive Tools.app/Contents/Info.plist</string>
-                <key>plist_version_key</key>
-                <string>CFBundleShortVersionString</string>
             </dict>
         </dict>
     </array>
