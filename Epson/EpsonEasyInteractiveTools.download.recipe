@@ -3,33 +3,20 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Easy Interactive Tools for the Epson ELPDC20 Document Camera.</string>
+    <string>Downloads the latest version of Easy Interactive Tools for the ELPDC20 Document Camera.</string>
     <key>Identifier</key>
     <string>com.github.macbr00ke.download.EpsonEasyInteractiveTools</string>
     <key>Input</key>
     <dict>
-        <key>MAJOR_VERSION</key>
-        <string>5</string>
         <key>NAME</key>
         <string>Easy Interactive Tools</string>
-        <key>SEARCH_URL</key>
-        <string>https://epson.com/Support/Projectors/Document-Cameras/Epson-ELPDC20-Document-Camera/s/SPT_V12H500020?review-filter=macOS+26.x+(Tahoe)</string>
+        <key>url</key>
+        <string>https://ftp.epson.com/drivers/EITV522_MacOSX.dmg</string>
     </dict>
     <key>MinimumVersion</key>
     <string>2.3</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Processor</key>
-            <string>URLTextSearcher</string>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>%SEARCH_URL%</string>
-                <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https://ftp\.epson\.com/drivers/EIT[V_]?(?P&lt;version&gt;%MAJOR_VERSION%[\d.]+)_?(?:MacOSX)?\.dmg)</string>
-            </dict>
-        </dict>
         <dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -78,8 +65,9 @@
             <dict>
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/payload</string>
+                <!-- Fixed space in path name -->
                 <key>pkg_payload_path</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/Easy_Interactive_Tools_Installer.pkg/Payload</string>
+                <string>%RECIPE_CACHE_DIR%/unpack/Easy Interactive Tools Installer.pkg/Payload</string>
                 <key>purge_destination</key>
                 <true/>
             </dict>
