@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
     <key>Comment</key>
-    <string>Created with Recipe Robot v2.5.0 (https://github.com/homebysix/recipe-robot)</string>
+    <string>Downloads the latest Current track version of jamovi for macOS.</string>
     <key>Description</key>
-    <string>Downloads the latest version of jamovi.</string>
+    <string>Downloads the latest Current track version of jamovi for macOS.</string>
     <key>Identifier</key>
     <string>com.github.macbr00ke.download.jamovi</string>
     <key>Input</key>
     <dict>
-        <key>NAME</key>
-        <string>jamovi</string>
         <key>ARCH</key>
         <string>arm64</string>
+        <key>NAME</key>
+        <string>jamovi</string>
     </dict>
     <key>MinimumVersion</key>
     <string>2.3</string>
@@ -23,9 +23,14 @@
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>&lt;h2&gt;(?P&lt;version&gt;\d+\.\d+\.\d+)</string>
+                <string>(?s)(?i)current.*?jamovi-(?P&lt;version&gt;[\d\.]+)-macos-%ARCH%\.dmg</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>Referer</key>
+                    <string>https://www.jamovi.org/</string>
+                </dict>
                 <key>url</key>
-                <string>https://www.jamovi.org/releases.html</string>
+                <string>https://www.jamovi.org/download.html</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
@@ -33,19 +38,15 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>version_long</key>
-                <string>%version%.0</string>
-            </dict>
-            <key>Processor</key>
-            <string>VariableSetter</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
                 <key>filename</key>
-                <string>%NAME%.dmg</string>
+                <string>%NAME%-%version%-%ARCH%.dmg</string>
+                <key>request_headers</key>
+                <dict>
+                    <key>Referer</key>
+                    <string>https://www.jamovi.org/download.html</string>
+                </dict>
                 <key>url</key>
-                <string>https://www.jamovi.org/downloads/jamovi-%version_long%-macos-%ARCH%.dmg</string>
+                <string>https://www.jamovi.org/downloads/jamovi-%version%-macos-%ARCH%.dmg</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
