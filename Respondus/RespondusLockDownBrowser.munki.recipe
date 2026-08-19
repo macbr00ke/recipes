@@ -14,7 +14,7 @@
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>RespondusLockDownBrowser</string>
+		<string>LockDownBrowser</string>
 		<key>LAB_HASH</key>
 		<string>FILLINYOURLABHASH</string>
 		<key>MUNKI_REPO_SUBDIR</key>
