@@ -145,7 +145,7 @@ rm -rf "/Library/Application Support/Respondus LockDown Browser"
 			"LockDown Browser (unconfigured).app". Glob for whatever .app is actually in there
 			and normalize the name so the Munki installs item path stays stable across
 			versions even if that naming changes again. VERIFY the resulting bundle name on
-			first run -- see chat notes.</string>
+			first run.</string>
 			<key>Processor</key>
 			<string>FileFinder</string>
 			<key>Arguments</key>
@@ -203,7 +203,7 @@ rm -rf "/Library/Application Support/Respondus LockDown Browser"
 			<key>Arguments</key>
 			<dict>
 				<key>dmg_root</key>
-				<string>%RECIPE_CACHE_DIR%/application_payload</string>
+				<string>%RECIPE_CACHE_DIR%/application_payload/Applications</string>
 				<key>dmg_path</key>
 				<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
 			</dict>
