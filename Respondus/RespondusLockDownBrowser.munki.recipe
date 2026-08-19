@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Requires INSTITUTION_ID and LAB_HASH to be set in an override; this base
+	recipe intentionally contains no institution-specific secrets.</string>
+	<key>Identifier</key>
+	<string>com.github.macbr00ke.munki.RespondusLockDownBrowser</string>
+	<key>MinimumVersion</key>
+	<string>1.0.0</string>
+	<key>ParentRecipe</key>
+	<string>com.github.nstrauss.download.RespondusLockDownBrowser</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>RespondusLockDownBrowser</string>
+		<key>LAB_HASH</key>
+		<string>FILLINYOURLABHASH</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>Apps/Respondus</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>display_name</key>
+			<string>Respondus LockDown Browser</string>
+			<key>description</key>
+			<string>Respondus LockDown Browser locks down the testing environment for online exams.</string>
+			<key>category</key>
+			<string>Education</string>
+			<key>developer</key>
+			<string>Respondus</string>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>unattended_install</key>
+			<true/>
+			<key>minimum_os_version</key>
+			<string>11.0</string>
+			<key>preinstall_script</key>
+			<string>#!/bin/bash
+# LockDown Browser's own installer creates this; without it the app can fail to launch cleanly.
+mkdir -p /var/root/Library/Logs
+</string>
+			<key>postinstall_script</key>
+			<string>#!/bin/bash
+# Drop in the institution ID and lab hash config files -- equivalent to what Respondus's
+# postinstall would derive from the install package's name, but done directly so we don't
+# have to rename the package or run their postinstall script.
+CONFIG_DIR="/Library/Application Support/Respondus LockDown Browser/config"
+mkdir -p "$CONFIG_DIR"
+echo -n "%INSTITUTION_ID%" > "$CONFIG_DIR/id.txt"
+echo -n "%LAB_HASH%" > "$CONFIG_DIR/lab.txt"
+chmod 644 "$CONFIG_DIR/id.txt" "$CONFIG_DIR/lab.txt"
+</string>
+			<key>uninstall_method</key>
+			<string>uninstall_script</string>
+			<key>uninstall_script</key>
+			<string>#!/bin/bash
+LDB="/Applications/LockDown Browser.app"
+if [ -d "$LDB" ]; then
+    rm -rf "$LDB"
+fi
+rm -rf "/Library/Application Support/Respondus LockDown Browser"
+</string>
+		</dict>
+	</dict>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Comment</key>
+			<string>Force an override to supply the lab hash. INSTITUTION_ID is already gated by
+			the parent download recipe's own StopProcessingIf.</string>
+			<key>Processor</key>
+			<string>StopProcessingIf</string>
+			<key>Arguments</key>
+			<dict>
+				<key>predicate</key>
+				<string>LAB_HASH == "FILLINYOURLABHASH"</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>FileFinder</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pattern</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/Install*.pkg</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>FlatPkgUnpacker</string>
+			<key>Arguments</key>
+			<dict>
+				<key>flat_pkg_path</key>
+				<string>%found_filename%</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/pkg_unpack</string>
+				<key>purge_destination</key>
+				<true/>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Glob for the payload rather than hardcoding the component pkg's name, since
+			that has moved between Respondus releases in the past.</string>
+			<key>Processor</key>
+			<string>FileFinder</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pattern</key>
+				<string>%RECIPE_CACHE_DIR%/pkg_unpack/*.pkg/Payload</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>PkgRootCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkgroot</key>
+				<string>%RECIPE_CACHE_DIR%/application_payload/Applications</string>
+				<key>pkgdirs</key>
+				<dict/>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>PkgPayloadUnpacker</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_payload_path</key>
+				<string>%found_filename%</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/application_payload/Applications</string>
+				<key>purge_destination</key>
+				<true/>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Respondus has historically shipped the bundle as
+			"LockDown Browser (unconfigured).app". Glob for whatever .app is actually in there
+			and normalize the name so the Munki installs item path stays stable across
+			versions even if that naming changes again. VERIFY the resulting bundle name on
+			first run -- see chat notes.</string>
+			<key>Processor</key>
+			<string>FileFinder</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pattern</key>
+				<string>%RECIPE_CACHE_DIR%/application_payload/Applications/*.app</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>FileMover</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source</key>
+				<string>%found_filename%</string>
+				<key>target</key>
+				<string>%RECIPE_CACHE_DIR%/application_payload/Applications/LockDown Browser.app</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>The receipt version LockDown Browser reports is unreliable and the app's
+			CFBundleShortVersionString doesn't track point releases, so key detection off the
+			executable instead (same trick used in the aysiu-recipes munki recipe).</string>
+			<key>Processor</key>
+			<string>MunkiInstallsItemsCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>faux_root</key>
+				<string>%RECIPE_CACHE_DIR%/application_payload</string>
+				<key>installs_item_paths</key>
+				<array>
+					<string>/Applications/LockDown Browser.app/Contents/MacOS/LockDown Browser</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Pin the pkginfo version to the one the download recipe scraped from the
+			Respondus site, since our installs item won't reliably expose it.</string>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+			<key>Arguments</key>
+			<dict>
+				<key>additional_pkginfo</key>
+				<dict>
+					<key>version</key>
+					<string>%version%</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>DmgCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>dmg_root</key>
+				<string>%RECIPE_CACHE_DIR%/application_payload</string>
+				<key>dmg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
