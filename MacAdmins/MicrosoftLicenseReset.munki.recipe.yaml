@@ -1,0 +1,33 @@
+Description: Downloads the latest Microsoft License Reset package and imports it into Munki.
+Identifier: local.munki.MicrosoftLicenseReset
+MinimumVersion: "2.3"
+ParentRecipe: com.github.grahampugh.recipes.download.MicrosoftLicenseReset
+Input:
+  NAME: Microsoft License Reset
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  pkginfo:
+    catalogs:
+      - testing
+    category: Productivity
+    developer: Microsoft
+    display_name: Microsoft License Reset
+    description: >
+      Removes cached Office activation/licensing data so Microsoft Office
+      apps can be re-activated from scratch. Utility package from
+      Office-Reset.com, signed by Microsoft (Paul Bowden).
+    name: "%NAME%"
+    unattended_install: true
+    blocking_applications:
+      - Microsoft Word
+      - Microsoft Excel
+      - Microsoft PowerPoint
+      - Microsoft Outlook
+      - Microsoft OneNote
+      - OneDrive
+      - Microsoft Teams
+      - MSTeams
+Process:
+  - Processor: MunkiImporter
+    Arguments:
+      pkg_path: "%pathname%"
+      repo_subdirectory: "%MUNKI_REPO_SUBDIR%"
