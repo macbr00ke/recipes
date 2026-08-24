@@ -1,5 +1,5 @@
 Description: Downloads the latest Microsoft License Reset package and imports it into Munki.
-Identifier: local.munki.MicrosoftLicenseReset
+Identifier: com.github.macbr00ke.recipes.munki.MicrosoftLicenseReset
 MinimumVersion: "2.3"
 ParentRecipe: com.github.grahampugh.recipes.download.MicrosoftLicenseReset
 Input:
