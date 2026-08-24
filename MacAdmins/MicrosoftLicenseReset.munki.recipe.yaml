@@ -3,8 +3,8 @@ Identifier: com.github.macbr00ke.recipes.munki.MicrosoftLicenseReset
 MinimumVersion: "2.3"
 ParentRecipe: com.github.grahampugh.recipes.download.MicrosoftLicenseReset
 Input:
-  NAME: Microsoft License Reset
-  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: MicrosoftLicenseReset
+  MUNKI_REPO_SUBDIR: Apps/Scripts
   pkginfo:
     catalogs:
       - testing
