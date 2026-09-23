@@ -20,8 +20,10 @@
 			<array>
 				<string>testing</string>
 			</array>
+			<key>category</key>
+			<string>Multimedia</string>
 			<key>description</key>
-			<string>Stream similar tasting music using your iPhone.</string>
+			<string>Mac app for listening to music using the Pandora streaming service.</string>
 			<key>developer</key>
 			<string>Pandora Media</string>
 			<key>display_name</key>
