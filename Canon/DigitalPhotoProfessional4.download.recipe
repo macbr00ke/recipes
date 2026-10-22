@@ -60,7 +60,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/*/*.pkg</string>
             </dict>
         </dict>
         <dict>
@@ -75,7 +75,7 @@
                     <string>Apple Root CA</string>
                 </array>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/%found_basename%</string>
+                <string>%found_filename%</string>
             </dict>
         </dict>
     </array>
