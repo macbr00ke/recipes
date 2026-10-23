@@ -20,10 +20,21 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>url</key>
+				<string>https://www.openlca.org/download/</string>
+				<key>re_pattern</key>
+				<string>s/D1xa3haTiHJdhqt/download\?path=(?P&lt;share_path&gt;%2F[\d.]+)&amp;(?:amp;)?files=(?P&lt;dmg_name&gt;openLCA_mkl_macOS_x64_[\d.]+_[\d-]+\.dmg)</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLTextSearcher</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>filename</key>
 				<string>%NAME%.dmg</string>
 				<key>url</key>
-				<string>https://share.greendelta.com/index.php/s/D1xa3haTiHJdhqt/download?path=%2F2.6.0&amp;files=openLCA_mkl_macOS_x64_2.6.0_2025-12-15.dmg</string>
+				<string>https://share.greendelta.com/index.php/s/D1xa3haTiHJdhqt/download?path=%share_path%&amp;files=%dmg_name%</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>
